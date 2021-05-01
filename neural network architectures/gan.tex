@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\tikzstyle{datapunt} = [
+  rectangle, minimum width=1.75cm, minimum height=1.25cm, thin, draw=black,
+  fill=white]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thick, draw=black}}
+\begin{tikzpicture}
+
+  % Data generation process
+  \node (noise) at (0.5, 1.75) {Noise};
+  \draw[arrow] (0.0, 1.5) -- (1.2, 1.5);
+  \draw (1.25, 1.0) -- (3.25, 0.0) -- (3.25, 3.0) -- (1.25, 2.0) --cycle;
+  \node at (2.25, 1.5) {Generator};
+  \draw[arrow] (3.35, 1.5) -- (4.0, 1.5);
+  \node[datapunt] at (5.0, 1.5) {$\hat{x}$};
+
+  % Data selection from training data
+  \node[datapunt] at (1.8, -1.25) {$x_{\textrm{train}}$};
+  \node[datapunt] at (2.05, -1.5) {$x_{\textrm{train}}$};
+  \node[datapunt] at (2.30, -1.75) {$x_{\textrm{train}}$};
+  \draw[arrow] (3.35, -1.5) -- (4.0, -1.5);
+  \node[datapunt] at (5.0, -1.5) {$x$};
+
+  % Discriminator
+  \draw[arrow] (6.0, 1.5) -- (6.9, 1.0);
+  \draw[arrow] (6.0, -1.5) -- (6.9, -1.0);
+  \draw(7.0, 1.5) -- (9.5, 0.5) -- (9.5, -0.5) -- (7.0, -1.5) -- cycle;
+	\node at (8.25,0) {Discriminator};
+  \draw[arrow] (9.6, 0.0) -- (10.3, 0.0);
+  \node at (11.25, 0) {Real / fake};
+
+
+	%\draw[arrow] ([xshift=-0.675cm, yshift=0.75cm]z.west) -- ([xshift=-0.125cm, yshift=0.75cm]z.west);
+  %\draw[arrow] ([xshift=0.125cm, yshift=0.75cm]z.east) -- ([xshift=0.675cm, yshift=0.75cm]z.east);
+	%\draw[arrow] (Z.east) -- ([xshift=0.5cm]Z.east);
+
+\end{tikzpicture}
+
+\end{document}

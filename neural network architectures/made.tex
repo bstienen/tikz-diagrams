@@ -1,0 +1,71 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\tikzstyle{node} = [
+  circle,fill=white, draw=black, minimum size=0.7cm
+]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, semithick, draw=black}}
+\begin{tikzpicture}
+
+  % Input
+  \node at (0.5, 1.0) {$\textbf{a}$};
+  \node at (0.5, 0.0) {$\textbf{b}$};
+  \node at (0.5,-1.0) {$\textbf{c}$};
+  \draw[arrow] (0.8, 1.0) -- (1.5, 1.0);
+  \draw[arrow] (0.8, 0.0) -- (1.5, 0.0);
+  \draw[arrow] (0.8,-1.0) -- (1.5,-1.0);
+
+  % Layer 1
+  \node[node] (node11) at (2.0, 1.0) {};
+  \node[node] (node12) at (2.0, 0.0) {};
+  \node[node] (node13) at (2.0,-1.0) {};
+
+  % Layer 2
+  \node[node] (node21) at (4.0, 1.5) {};
+  \node[node] (node22) at (4.0, 0.5) {};
+  \node[node] (node23) at (4.0,-0.5) {};
+  \node[node] (node24) at (4.0,-1.5) {};
+
+  % Layer 3
+  \node[node] (node31) at (6.0, 1.0) {};
+  \node[node] (node32) at (6.0, 0.0) {};
+  \node[node] (node33) at (6.0,-1.0) {};
+
+  % Weights 1 -- 2
+  \draw[arrow] (node11) -- (node21);
+  \draw[arrow] (node11) -- (node22);
+  \draw[arrow] (node11) -- (node23);
+  \draw[arrow] (node11) -- (node24);
+  \draw[arrow] (node12) -- (node21);
+  \draw[arrow] (node12) -- (node24);
+
+  % Weights 2 -- 3
+  \draw[arrow] (node21) -- (node33);
+  \draw[arrow] (node22) -- (node32);
+  \draw[arrow] (node22) -- (node33);
+  \draw[arrow] (node23) -- (node32);
+  \draw[arrow] (node23) -- (node33);
+  \draw[arrow] (node24) -- (node33);
+
+  % Output
+  \node[text width=1.0cm] at (8.0, 1.0) {$p(\hat{\textbf{a}})$};
+  \node[text width=1.0cm] at (8.0, 0.0) {$p(\hat{\textbf{b}} | \textbf{a})$};
+  \node[text width=1.0cm] at (8.0,-1.0) {$p(\hat{\textbf{c}} | \textbf{a}, \textbf{b})$};
+  \draw[arrow] (6.55, 1.0) -- (7.25, 1.0);
+  \draw[arrow] (6.55, 0.0) -- (7.25, 0.0);
+  \draw[arrow] (6.55,-1.0) -- (7.25,-1.0);
+
+	%\draw[arrow] ([xshift=-0.675cm, yshift=0.75cm]z.west) -- ([xshift=-0.125cm, yshift=0.75cm]z.west);
+  %\draw[arrow] ([xshift=0.125cm, yshift=0.75cm]z.east) -- ([xshift=0.675cm, yshift=0.75cm]z.east);
+	%\draw[arrow] (Z.east) -- ([xshift=0.5cm]Z.east);
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\tikzstyle{node} = [ circle, fill=white, draw=black, minimum size=0.7cm ]
+\tikzstyle{bijschrift} = [ align=center ]
+\tikzstyle{background} = [ draw=gray, style=dashed ]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thin, draw=black}}
+\begin{tikzpicture}
+
+  % Input
+  \node at (0.5, 1.0) {$x^1$};
+  \node at (0.5, 0.0) {$x^2$};
+  \node at (0.5,-1.0) {$x^3$};
+  \draw[arrow] (0.8, 1.0) -- (1.5, 1.0);
+  \draw[arrow] (0.8, 0.0) -- (1.5, 0.0);
+  \draw[arrow] (0.8,-1.0) -- (1.5,-1.0);
+
+  % Layer 1
+  \draw[background] (2.0, 2.5) -- (2.0,-2.5);
+  \node[bijschrift] (layer1) at (2.0,-3.0) {Input\\layer};
+  \node[node] (node11) at (2.0, 1.0) {};
+  \node[node] (node12) at (2.0, 0.0) {};
+  \node[node] (node13) at (2.0,-1.0) {};
+
+  % Layer 2
+  \draw[background] (4.0, 2.5) -- (4.0,-2.5);
+  \node[bijschrift] (layer2) at (4.0,-3.0) {Hidden\\layer 1};
+  \node[node] (node21) at (4.0, 1.5) {};
+  \node[node] (node22) at (4.0, 0.5) {};
+  \node[node] (node23) at (4.0,-0.5) {};
+  \node[node] (node24) at (4.0,-1.5) {};
+
+  % Layer 3
+  \draw[background] (6.0, 2.5) -- (6.0,-2.5);
+  \node[bijschrift] (layer3) at (6.0,-3.0) {Hidden\\layer 2};
+  \node[node] (node31) at (6.0, 1.5) {};
+  \node[node] (node32) at (6.0, 0.5) {};
+  \node[node] (node33) at (6.0,-0.5) {};
+  \node[node] (node34) at (6.0,-1.5) {};
+
+  % Layer 4
+  \draw[background] (8.0, 2.5) -- (8.0,-2.5);
+  \node[bijschrift] (layer4) at (8.0,-3.0) {Output\\layer};
+  \node[node] (node41) at (8.0, 0.0) {};
+
+
+  % Weights 1 -- 2
+  \draw[arrow] (node11) -- (node21);
+  \draw[arrow] (node11) -- (node22);
+  \draw[arrow] (node11) -- (node23);
+  \draw[arrow] (node11) -- (node24);
+  \draw[arrow] (node12) -- (node21);
+  \draw[arrow] (node12) -- (node22);
+  \draw[arrow] (node12) -- (node23);
+  \draw[arrow] (node12) -- (node24);
+  \draw[arrow] (node13) -- (node21);
+  \draw[arrow] (node13) -- (node22);
+  \draw[arrow] (node13) -- (node23);
+  \draw[arrow] (node13) -- (node24);
+
+  % Weights 2 -- 3
+  \draw[arrow] (node21) -- (node31);
+  \draw[arrow] (node21) -- (node32);
+  \draw[arrow] (node21) -- (node33);
+  \draw[arrow] (node21) -- (node34);
+  \draw[arrow] (node22) -- (node31);
+  \draw[arrow] (node22) -- (node32);
+  \draw[arrow] (node22) -- (node33);
+  \draw[arrow] (node22) -- (node34);
+  \draw[arrow] (node23) -- (node31);
+  \draw[arrow] (node23) -- (node32);
+  \draw[arrow] (node23) -- (node33);
+  \draw[arrow] (node23) -- (node34);
+  \draw[arrow] (node24) -- (node31);
+  \draw[arrow] (node24) -- (node32);
+  \draw[arrow] (node24) -- (node33);
+  \draw[arrow] (node24) -- (node34);
+
+  % Weights 3 -- 4
+  \draw[arrow] (node31) -- (node41);
+  \draw[arrow] (node32) -- (node41);
+  \draw[arrow] (node33) -- (node41);
+  \draw[arrow] (node34) -- (node41);
+
+  % Output
+  \node at (9.5, 0.0) {$\hat{y}$};
+  \draw[arrow] (8.55, 0.0) -- (9.25, 0.0);
+
+\end{tikzpicture}
+
+\end{document}

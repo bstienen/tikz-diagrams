@@ -1,0 +1,73 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\tikzstyle{dtnode} = [
+  rectangle, minimum width=0.75cm, minimum height=0.35cm, thin, draw=black,
+]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thin, draw=black}}
+\begin{tikzpicture}
+
+  % Data flow
+  \node (training_data) at (0.0, 5.0) {Training data};
+  \draw[arrow] (training_data) -- (11.2, 5.0);
+  \draw[arrow] (2.5, 5.0) -- (2.5, 4.6);
+  \draw[arrow] (5.5, 5.0) -- (5.5, 4.6);
+  \draw[arrow] (9.0, 5.0) -- (9.0, 4.6);
+
+  % Tree 1
+  \node[dtnode] (t1n1) at (2.5, 4.2) {};
+  \node[dtnode] (t1n2) at (2.0, 3.6) {};
+  \node[dtnode] (t1n3) at (3.0, 3.6) {};
+  \node[dtnode] (t1n4) at (2.5, 3.0) {};
+  \node[dtnode] (t1n5) at (3.5, 3.0) {};
+  \draw[arrow] (t1n1) -- (t1n2);
+  \draw[arrow] (t1n1) -- (t1n3);
+  \draw[arrow] (t1n3) -- (t1n4);
+  \draw[arrow] (t1n3) -- (t1n5);
+
+  % Tree 2
+  \node[dtnode] (t2n1) at (5.5, 4.2) {};
+  \node[dtnode] (t2n2) at (5.0, 3.6) {};
+  \node[dtnode] (t2n3) at (6.0, 3.6) {};
+  \node[dtnode] (t2n4) at (5.5, 3.0) {};
+  \node[dtnode] (t2n5) at (6.5, 3.0) {};
+  \node[dtnode] (t2n6) at (5.0, 2.4) {};
+  \node[dtnode] (t2n7) at (6.0, 2.4) {};
+  \draw[arrow] (t2n1) -- (t2n2);
+  \draw[arrow] (t2n1) -- (t2n3);
+  \draw[arrow] (t2n3) -- (t2n4);
+  \draw[arrow] (t2n3) -- (t2n5);
+  \draw[arrow] (t2n4) -- (t2n6);
+  \draw[arrow] (t2n4) -- (t2n7);
+
+  % Tree 3
+  \node[dtnode] (t3n1) at (9.0, 4.2) {};
+  \node[dtnode] (t3n2) at (8.5, 3.6) {};
+  \node[dtnode] (t3n3) at (9.5, 3.6) {};
+  \node[dtnode] (t3n4) at (8.0, 3.0) {};
+  \node[dtnode] (t3n5) at (9.0, 3.0) {};
+  \draw[arrow] (t3n1) -- (t3n2);
+  \draw[arrow] (t3n1) -- (t3n3);
+  \draw[arrow] (t3n2) -- (t3n4);
+  \draw[arrow] (t3n2) -- (t3n5);
+
+  % Weight lines
+  \draw[arrow, draw=red] (2.5, 2.6) -- (2.5, 1.7) -- (4.25, 1.7) -- (4.25, 5.2) -- (5.3, 5.2) -- (5.3, 4.6);
+  \draw[draw=red]        (5.3, 5.2) -- (7.25, 5.2) node [circle,fill=red,inner sep=1pt] {};
+  \draw[arrow, draw=red] (5.5, 2.0) -- (5.5, 1.7) -- (7.25, 1.7) -- (7.25, 5.2) -- (8.8, 5.2) -- (8.8, 4.6);
+  \draw[draw=red]        (8.8, 5.2) -- (10.75, 5.2) node [circle,fill=red,inner sep=1pt] {};
+  \draw[arrow, draw=red] (9.0, 2.6) -- (9.0, 1.7) -- (10.75, 1.7) -- (10.75, 5.2) -- (11.2, 5.2);
+
+  % Weight texts
+  \node[text=red, align=left] at (4.9, 5.5) {Weights};
+  \node[text=red, align=left] at (8.8, 5.5) {Updated weights};
+
+\end{tikzpicture}
+
+\end{document}

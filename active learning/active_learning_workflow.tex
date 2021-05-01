@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thin, draw=black}}
+
+\begin{tikzpicture}[node distance=1.2cm, every node/.style={fill=white, rectangle, rounded corners, draw=black, minimum width=4.0cm, minimum height=0.7cm, text centered}, align=center]
+    % Specification of nodes (position, etc.)
+    \node (start)								{\small Select initial data};
+    \node (sample)		[below of=start]		{\small Label data};
+    \node (dataset)		[below of=sample, yshift=-1.2cm]		{\small Add to dataset};
+    \node (train)		[right of=dataset, xshift=3.5cm]		{\small Train ML estimator(s)};
+    \node (sample2)		[above of=train]					{\small Sample candidate points};
+    \node (evaluate)	[right of=sample, xshift=3.5cm]		{\small Select most interesting};
+    \node (end)			[below of=dataset]		{\small Finish sampling};
+    % Specification of lines between nodes specified above
+    % with aditional nodes for description
+    \draw[arrow]			(start) -- (sample);
+    \draw[arrow]			(sample) -- (dataset);
+    \draw[arrow]			(dataset) -- (train);
+    \draw[arrow]			(train) -- (sample2);
+    \draw[arrow]			(sample2) -- (evaluate);
+    \draw[arrow]			(evaluate) -- (sample);
+    \draw[arrow]			(dataset) -- (end);
+\end{tikzpicture}
+
+\end{document}

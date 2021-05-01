@@ -1,0 +1,55 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thick, draw=black}}
+\begin{tikzpicture}
+  %\draw[help lines](0,-5) grid (10,5);
+
+  \draw[step=0.5] (0, -1.5) grid (0.5, 1.5);
+  \node(x) at (0.25,-1.75) {$\mathbf x$};
+
+	\draw(0.75, 1.5) -- (2.75, 1.0) -- (2.75, -1.0) -- (0.75, -1.5) -- cycle;
+	\node at (1.75,0) {Encoder};
+
+  \node[fill=black!10, rectangle, rounded corners, minimum width=3.5cm, minimum height=3cm, xshift=5cm, yshift=0.25cm] (2.0, 3.0) {};
+  \node(sampling) at (5.0, 1.25) {Sample step};
+
+  \draw[arrow] (2.85, 0) -- (3.4, 0);
+
+  \draw[step=0.5, fill=white] (3.4999, -1.0) grid (4.0, 1.0) rectangle (3.4999, -1.0);
+  \node(mu1) at (3.75, 0.75) {\footnotesize{$\mu^1$}};
+  \node(mu2) at (3.75, 0.25) {\footnotesize{$\mu^2$}};
+  \node(sig1) at (3.75,-0.25) {\footnotesize{$\sigma^1$}};
+  \node(sig2) at (3.75,-0.75) {\footnotesize{$\sigma^2$}};
+
+  \draw[arrow] (4.15, 0.75) -- (5.85, 0.3);
+  \draw[arrow] (4.15,-0.25) -- (5.85, 0.2);
+  \draw[arrow] (4.15, 0.25) -- (5.85, -0.2);
+  \draw[arrow] (4.15,-0.75) -- (5.85, -0.3);
+
+  \draw[step=0.5, fill=white] (5.9999, -0.5) grid (6.5, 0.5) rectangle (5.9999, -0.5);
+  \node(z) at (6.25,-0.75) {$\mathbf z$};
+  \node(dist) at (5, -1.75) {$\mathcal{N}(\mu^i, \sigma^i) \xrightarrow{\text{sample}} z^i$};
+
+  \draw[arrow] (6.6, 0) -- (7.15, 0);
+
+  \draw (7.25, 0.5) -- (7.25, -0.5) -- (9.25, -1.5) -- (9.25, 1.5) --cycle;
+	\node at (8.25, 0) {Decoder};
+
+  \draw[step=0.5] (9.4999, -1.5) grid (10.0, 1.5);
+  \node(xhat) at (9.75,-1.75) {$\mathbf{\widehat{x}}$};
+
+	%\draw[arrow] ([xshift=-0.675cm, yshift=0.75cm]z.west) -- ([xshift=-0.125cm, yshift=0.75cm]z.west);
+  %\draw[arrow] ([xshift=0.125cm, yshift=0.75cm]z.east) -- ([xshift=0.675cm, yshift=0.75cm]z.east);
+	%\draw[arrow] (Z.east) -- ([xshift=0.5cm]Z.east);
+
+\end{tikzpicture}
+
+\end{document}

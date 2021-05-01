@@ -1,0 +1,59 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+
+\definecolor{mygray}{rgb}{0.7, 0.7, 0.7}
+\definecolor{myhighlight}{RGB}{136, 156, 204}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\tikzstyle{node} = [
+  rectangle, minimum width=1.75cm, minimum height=0.75cm, thin, draw=black,
+]
+\tikzstyle{classA} = [ fill=myhighlight, text=white ]
+\tikzstyle{classB} = [ fill=mygray, text=white ]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thin, draw=black}}
+\begin{tikzpicture}
+
+  % Entry triangle
+  \draw[fill=black] (0.0, 5.75) -- (-0.1, 5.85) -- (0.1, 5.85) -- cycle;
+
+  % Root node
+  \node[node] (n1) at ( 0.0, 5.25) {$x^1 < 4$};
+  % Nodes at depth 1
+  \node[node] (n11) at (-3.0, 3.5) {$x^2 < 4$};
+  \node[node] (n10) at ( 3.0, 3.5) {$x^2 < 2$};
+  % Nodes at depth 2
+  \node[node, classA] (n111) at (-4.5, 1.75) {Class A};
+  \node[node]              (n110) at (-1.5, 1.75) {$x^1 < 3$};
+  \node[node, classA] (n101) at ( 1.5, 1.75) {Class A};
+  \node[node, classB] (n100) at ( 4.5, 1.75) {Class B};
+  % Nodes at depth 3
+  \node[node, classB] (n1101) at (-3.0, 0.0) {Class B};
+  \node[node, classA] (n1100) at ( 0.0, 0.0) {Class A};
+
+  % Arrows
+  \draw[arrow] (n1) -- (n11) node [midway, above, sloped] {\scriptsize{\textsc{True}}};
+  \draw[arrow] (n1) -- (n10) node [midway, above, sloped] {\scriptsize{\textsc{False}}};
+  \draw[arrow] (n11) -- (n111) node [midway, above, sloped] {\scriptsize{\textsc{True}}};
+  \draw[arrow] (n11) -- (n110) node [midway, above, sloped] {\scriptsize{\textsc{False}}};
+  \draw[arrow] (n10) -- (n101) node [midway, above, sloped] {\scriptsize{\textsc{True}}};
+  \draw[arrow] (n10) -- (n100) node [midway, above, sloped] {\scriptsize{\textsc{False}}};
+  \draw[arrow] (n110) -- (n1101) node [midway, above, sloped] {\scriptsize{\textsc{True}}};
+  \draw[arrow] (n110) -- (n1100) node [midway, above, sloped] {\scriptsize{\textsc{False}}};
+
+	% Depth arrow and labels
+  \draw[arrow, thick] (-6.0, 5.4) -- (-6.0, -1.0);
+  \node[rotate=90] at (-6.7, 2.625) {Depth};
+  \draw (-5.9, 5.25) -- (-6.1, 5.25) node [xshift=-0.2cm] {0};
+  \draw (-5.9, 3.50) -- (-6.1, 3.50) node [xshift=-0.2cm] {1};
+  \draw (-5.9, 1.75) -- (-6.1, 1.75) node [xshift=-0.2cm] {2};
+  \draw (-5.9, 0.00) -- (-6.1, 0.00) node [xshift=-0.2cm] {3};
+
+\end{tikzpicture}
+
+\end{document}

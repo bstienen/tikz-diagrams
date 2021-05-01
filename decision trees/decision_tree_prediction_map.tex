@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+
+\definecolor{mygray}{rgb}{0.7, 0.7, 0.7}
+\definecolor{myhighlight}{RGB}{136, 156, 204}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\tikzstyle{classA} = [ fill=myhighlight, text=white ]
+\tikzstyle{classB} = [ fill=mygray, text=white ]
+
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thin, draw=black}}
+\begin{tikzpicture}
+
+  % Areas
+  \draw[classA] (0.0, 0.0) -- (0.0, 4.0) -- (4.0, 4.0) -- (4.0, 0.0) -- cycle;
+  \draw[classB] (0.0, 4.0) -- (0.0, 5.0) -- (3.0, 5.0) -- (3.0, 4.0) -- cycle;
+  \draw[classA] (3.0, 4.0) -- (3.0, 5.0) -- (4.0, 5.0) -- (4.0, 4.0) -- cycle;
+  \draw[classB] (4.0, 2.0) -- (4.0, 5.0) -- (7.0, 5.0) -- (7.0, 2.0) -- cycle;
+  \draw[classA] (4.0, 0.0) -- (4.0, 2.0) -- (7.0, 2.0) -- (7.0, 0.0) -- cycle;
+
+  % Cuts
+  \draw[dashed] (0.0, 2.0) -- (7.0, 2.0);
+  \draw[dashed] (3.0, 0.0) -- (3.0, 5.0);
+
+  % Axes
+  \draw[arrow, thick] (-0.2, 0.0) -- ( 7.3, 0.0);
+  \draw[arrow, thick] ( 0.0,-0.2) -- ( 0.0, 5.3);
+  \node at ( 6.8,-0.5) {$x^1$};
+  \node at (-0.5, 4.8) {$x^2$};
+
+  % Cut tick labels
+  \node at ( 3.0,-0.2) {\footnotesize{3}};
+  \node at ( 4.0,-0.2) {\footnotesize{4}};
+  \node at (-0.2, 2.0) {\footnotesize{2}};
+  \node at (-0.2, 4.0) {\footnotesize{4}};
+
+
+\end{tikzpicture}
+
+\end{document}

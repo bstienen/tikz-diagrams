@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thick, draw=black}}
+\begin{tikzpicture}
+  % \draw[help lines](0,-5) grid (10,5);
+
+  \draw[step=0.5] (0, -1.5) grid (0.5, 1.5);
+  \node(x) at (0.25,-1.75) {$\mathbf x$};
+
+	\draw(0.75, 1.5) -- (2.75, 0.5) -- (2.75, -0.5) -- (0.75, -1.5) -- cycle;
+	\node at (1.75,0) {Encoder};
+
+  \draw[step=0.5] (3.4999, -0.5) grid (4.0, 0.5);
+	\node(z) at (3.75,-0.75) {$\mathbf z$};
+
+  \draw (4.75, 0.5) -- (4.75, -0.5) -- (6.75, -1.5) -- (6.75, 1.5) --cycle;
+	\node at (5.75, 0) {Decoder};
+
+  \draw[step=0.5] (6.9999, -1.5) grid (7.5, 1.5);
+  \node(xhat) at (7.25,-1.75) {$\mathbf{\widehat{x}}$};
+
+	\draw[arrow] ([xshift=-0.675cm, yshift=0.75cm]z.west) -- ([xshift=-0.125cm, yshift=0.75cm]z.west);
+  \draw[arrow] ([xshift=0.125cm, yshift=0.75cm]z.east) -- ([xshift=0.675cm, yshift=0.75cm]z.east);
+	%\draw[arrow] (Z.east) -- ([xshift=0.5cm]Z.east);
+
+\end{tikzpicture}
+
+\end{document}

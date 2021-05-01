@@ -1,0 +1,55 @@
+\documentclass[tikz]{standalone}
+\standaloneconfig{border=0.3cm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\tikzstyle{node} = [
+  circle, draw=black, minimum size=0.8cm
+]
+
+\begin{document}
+
+\tikzset{arrow/.style={-stealth, thick, draw=black}}
+\begin{tikzpicture}
+
+  % z_i state
+  \draw[step=0.8] (0, -1.6) grid (0.8, 2.4);
+  \node(z11) at (0.4, 2.0) {$z_i^1$};
+  \node(z12) at (0.4, 1.2) {$z_i^2$};
+  \node(z13) at (0.4, 0.5) {$\vdots$};
+  \node(z14) at (0.4, -0.4) {$z_i^j$};
+  \node(z15) at (0.4, -1.1) {$\vdots$};
+
+  % z_{i+1} state
+  \draw[step=0.8] (7.2, -1.6) grid (8.0, 2.4);
+  \node(z21) at (7.6, 2.0) {$z_{i+1}^1$};
+  \node(z22) at (7.6, 1.2) {$z_{i+1}^2$};
+  \node(z23) at (7.6, 0.5) {$\vdots$};
+  \node(z24) at (7.6, -0.4) {$z_{i+1}^j$};
+  \node(z25) at (7.6, -1.1) {$\vdots$};
+
+  % Bijector operations
+  \node (alpha) at (3.2, 0.8) {$\exp( f_\alpha^j(\ldots) )$};
+  \node (mu) at (3.2, 2.0) {$f_\mu^j(\ldots)$};
+  \node[node] (mul) at (3.2, -0.4) {$\times$};
+  \node[node] (add) at (4.8, -0.4) {$+$};
+
+  % Arrows
+  \draw[arrow, thin] (0.8, 2.0) -- (alpha);
+  \draw[arrow, thin] (0.8, 1.2) -- (alpha);
+  \draw[arrow, thin] (0.8, 0.4) -- (alpha);
+  \draw[arrow, thin] (0.8, 2.0) -- (mu);
+  \draw[arrow, thin] (0.8, 1.2) -- (mu);
+  \draw[arrow, thin] (0.8, 0.4) -- (mu);
+  \draw[arrow, thin] (0.8, -0.4) -- (mul);
+  \draw[arrow, thin] (mul) -- (add);
+  \draw[arrow, thin] (add) -- (z24);
+  \draw[arrow, thin] (alpha) -- (mul);
+
+  \draw[arrow, thin] (mu) -- (4.8, 2.0) -- (add);
+
+\end{tikzpicture}
+
+\end{document}
